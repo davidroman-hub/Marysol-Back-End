@@ -96,3 +96,54 @@ exports.remove = (req, res) => {
             })
         })
     }    
+
+//// update product method ////
+
+exports.update = (req,res) => {
+
+    let form = new formidable.IncomingForm()
+    form.keepExtensions = true
+    form.parse(req, (err,fields,files) => {
+
+            if(err){
+                return res.status(400).json({
+                    error:'La imagen no pudo ser cargada'
+                })
+            }
+
+            //All the filds dont need to be required its update..
+
+            // const {name, description, price, category,shipping, quantity} = fields
+            // if(!name || !description || !price || !category || !shipping || !quantity){
+            //     return res.status(400).json({
+            //         error:'Todos los campos son necesarios..'
+            //     })
+            // }
+
+                let product = req.product;  
+                product = _.extend(product,fields)
+
+                if(files.photo){
+                //we need to only accept photos with less than 1mb.
+                    if(files.photo.size > 1000000){
+                       return res.status(400).json({
+                           error:'La imagen debe ser menos de 1 mb'
+                       }) 
+                    }
+                    product.photo.data = fs.readFileSync(files.photo.path)
+                    product.photo.contentType = files.photo.type
+                }
+
+                product.save((err,result)=>{
+                    if(err){
+                        return res.status(400).json({
+                            error:errorHandler(error)
+                        })
+                    }
+
+                    res.json(result)
+
+                })
+          })
+
+        }
