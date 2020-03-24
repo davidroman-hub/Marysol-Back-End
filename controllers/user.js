@@ -1,5 +1,20 @@
 const User = require('../models/user')
 
+// user by id //
+
+exports.userById = (req, res, next, id ) => {
+    User.findById(id).exec((err, user )=>{
+            if(err || !user){
+                return res.status(400).json({
+                    error: ' User not Found'
+                });
+            }
+        req.profile = user;
+        next();
+    });
+};
+
+
 // the method to get the information of the user
 
 exports.read = (req,res) => {

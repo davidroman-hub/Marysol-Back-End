@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-const { 
+// to the admin can only create category
 
-    create
+const {adminMiddleware,requireSignin,isAuth } = require('../controllers/auth') 
+const {read} = require('../controllers/user')
 
- } = require('../controllers/category')
 
- router.post('/category/create', create)
+const {create} = require('../controllers/category')
+
+ router.post('/category/create/:Id',requireSignin,adminMiddleware,create)
 
 
  module.exports = router

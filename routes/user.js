@@ -5,16 +5,17 @@ const router = express.Router()
 
 
 const{ read, update } = require('../controllers/user')
-const { requireSignin, adminMiddleware} = require('../controllers/auth')
+const { userById ,requireSignin, adminMiddleware} = require('../controllers/auth')
 
 
 //routes
 
 router.get('/user/:id', requireSignin , read)
+//router.get('/admin/:id', requireSignin , adminMiddleware,read)
 router.put('/user/update', requireSignin ,  update)
 router.put('/admin/update', requireSignin , adminMiddleware, update)
 
-
+//router.param('userId', userById)
 
 
 module.exports = router // {}
