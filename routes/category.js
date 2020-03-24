@@ -5,11 +5,11 @@ const router = express.Router()
         //isadmin           //isauth
 const {adminMiddleware,requireSignin } = require('../controllers/auth') 
 
-const {categoryById,read,create} = require('../controllers/category')
+const {categoryById,read,create,update,remove,list} = require('../controllers/category')
 
  router.post('/category/create/:Id',requireSignin,adminMiddleware,create)
  router.get('/category/:categoryId', read)
-
+router.put('/category/:categoryId/:Id',requireSignin,adminMiddleware,update)
 
  router.param("categoryId",categoryById)
  module.exports = router
