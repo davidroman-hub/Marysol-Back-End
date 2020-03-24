@@ -18,9 +18,15 @@ mongoose
     .then(() => console.log('DB connected'))
     .catch(err => console.log('DB CONNECTION ERROR: ', err));
 
+
+
+
 // import routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const categoryRoutes = require('./routes/category');
+
+
 
 // app middlewares
 app.use(morgan('dev'));
@@ -30,9 +36,17 @@ if ((process.env.NODE_ENV = 'development')) {
     app.use(cors({ origin: `http://localhost:3000` }));
 }
 
+
+
+
+
 // middleware
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', categoryRoutes)
+
+
+
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
