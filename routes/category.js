@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 // to the admin can only create category
-
-const {adminMiddleware,requireSignin,isAuth } = require('../controllers/auth') 
+        //isadmin           //isauth
+const {adminMiddleware,requireSignin } = require('../controllers/auth') 
 const {read} = require('../controllers/user')
 
 
