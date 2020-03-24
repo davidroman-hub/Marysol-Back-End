@@ -9,7 +9,10 @@ const {categoryById,read,create,update,remove,list} = require('../controllers/ca
 
  router.post('/category/create/:Id',requireSignin,adminMiddleware,create)
  router.get('/category/:categoryId', read)
-router.put('/category/:categoryId/:Id',requireSignin,adminMiddleware,update)
+ router.put('/category/:categoryId/:Id',requireSignin,adminMiddleware,update)
+ router.delete('/category/:categoryId/:Id', requireSignin,adminMiddleware,remove)
+ router.get('/categories',list)
+
 
  router.param("categoryId",categoryById)
  module.exports = router
