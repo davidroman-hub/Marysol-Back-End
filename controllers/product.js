@@ -186,3 +186,31 @@ exports.list = (req, res) => {
     });
 
 }
+
+
+/**
+ * Now we need to show the related products or another products
+ * as the same case, so we need to create another list showing 
+ * the products with the same category 
+ */
+
+ exports.listRelated = ( req, res) => {
+     let limit = req.query.limit ? parseInt(req.query.limit): 6;
+     
+      //we need to create a method to find the related categories  from the product so,
+     //if we gonna use a product to find the related 
+     //products we can't  use the same product.(not including it self)
+    
+     Product.find({_id:{$ne:req.product}, category:req.product.category})
+     .limit(limit)
+     .populate('category','_id name')
+     .exec((err,products)=>{
+         if(err){
+             return res.status(400).json({
+                 error:"Productos no encontrados"
+             })
+         }
+         res.json(products)
+     })
+ 
+    }
