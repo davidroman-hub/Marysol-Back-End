@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {adminMiddleware, requireSignin} = require('../controllers/auth')
 
-const { create, productById, read ,remove ,update, list, listRelated} = require('../controllers/product')
+const { create, productById, read ,remove ,update, list, listRelated, listCategories} = require('../controllers/product')
 
 
 router.get('/product/:productId', read)
@@ -12,7 +12,7 @@ router.delete('/product/:productId/:Id', requireSignin, adminMiddleware, remove)
 router.put('/product/:productId/:Id', requireSignin, adminMiddleware, update)
 router.get('/products', list)
 router.get('/products/related/:productId', listRelated)
-
+router.get('/products/categories', listCategories)
 
 router.param("productId", productById)
 module.exports = router

@@ -214,3 +214,19 @@ exports.list = (req, res) => {
      })
  
     }
+
+
+    //// List product Categories ////
+
+    
+exports.listCategories = (req, res) => { 
+    Product.distinct("category", {} ,(err, categories)=> {
+        if(err){
+            return res.status(400).json({
+                error:"Category not found"
+            })
+        }
+        res.json(categories)
+    })
+}
+    
