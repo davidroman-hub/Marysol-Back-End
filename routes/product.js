@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {adminMiddleware, requireSignin} = require('../controllers/auth')
 
-const { create, productById, read ,remove ,update, list, listRelated, listCategories} = require('../controllers/product')
+const { create, productById, read ,remove ,update, list, listRelated, listCategories,listBySearch,photo} = require('../controllers/product')
 
 
 router.get('/product/:productId', read)
@@ -13,6 +13,10 @@ router.put('/product/:productId/:Id', requireSignin, adminMiddleware, update)
 router.get('/products', list)
 router.get('/products/related/:productId', listRelated)
 router.get('/products/categories', listCategories)
+router.post('/products/by/search', listBySearch)
+router.get('/product/photo/:productId', photo)
+
+
 
 router.param("productId", productById)
 module.exports = router
