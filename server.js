@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 require('dotenv').config();
 
 const app = express();
@@ -31,7 +32,7 @@ const productRoutes = require('./routes/product');
 // app middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-// app.use(cors()); // allows all origins
+ app.use(cors()); // allows all origins
 if ((process.env.NODE_ENV = 'development')) {
     app.use(cors({ origin: `http://localhost:3000` }));
 }
