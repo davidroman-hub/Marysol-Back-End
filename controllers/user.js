@@ -1,5 +1,5 @@
 const User = require('../models/user')
-
+const {Order} = require('../models/order')
 // user by id //
 
 exports.userById = (req, res, next, id ) => {
@@ -81,5 +81,37 @@ User.findOne({_id: req.user._id},(err,user)=>{
             updatedUser.salt = undefined
             res.json(updatedUser)
         })
+    });
+};
+
+
+
+exports.addOrderToUserHistory = (req, res, next) => {
+    let history = [];
+
+    req.body.order.products.forEach(item => {
+        history.push({
+            _id: item._id,
+            name: item.name,
+            description: item.description,
+            category: item.category,
+            quantity: item.count,
+            transaction_id: req.body.order.transaction_id,
+            amount: req.body.order.amount,
+            // createdAt: req.body.order.createdAt
+
+        });
+    });
+
+    User.findOneAndUpdate({ _id: req.user._id },
+         { $push: { history: history } },
+         { new: true }, 
+         (error, data) => {
+            if (error) {
+                return res.status(400).json({
+                    error: 'Could not update user purchase history'
+            });
+        }
+        next();
     });
 };
