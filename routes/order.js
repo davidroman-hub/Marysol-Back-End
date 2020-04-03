@@ -6,14 +6,14 @@ const {requireSignin, isAuth,isAdmin} = require('../controllers/auth')
 //also we gonna use user controllers as well
 const {addOrderToUserHistory } = require('../controllers/user')
 const { create,listOrders, getStatusValues, orderById, updateOrderStatus } = require('../controllers/order')
-//const { decreaseQuantity } = require("../controllers/product")
+const { decreaseQuantity } = require("../controllers/product")
 
 
 router.post(
     "/order/create/:Id",
      requireSignin,
      addOrderToUserHistory,
-    // decreaseQuantity,
+     decreaseQuantity,
     create,
     )
 
