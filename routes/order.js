@@ -19,8 +19,8 @@ router.post(
 
 //list all the orders in the front end !
  router.get('/order/list/:Id', requireSignin,adminMiddleware,listOrders);
-// router.get('/order/status-values/:userId', requireSignin, isAuth, isAdmin, getStatusValues);
-// router.put('/order/:orderd/status/:userId',requireSignin, isAuth, isAdmin, updateOrderStatus);
+ router.get('/order/status-values/:Id', requireSignin,adminMiddleware,getStatusValues);
+ router.put('/order/:orderd/status/:Id',requireSignin, adminMiddleware, updateOrderStatus);
 
 
 
