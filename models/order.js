@@ -56,6 +56,8 @@ const OrderSchema = new mongoose.Schema(
     
     number: {},
     client_email:{},
+    client_address:{},
+    client_address2:{},
     client_name:{},
     client_phone:{},
     client_id:{},

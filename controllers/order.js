@@ -57,6 +57,7 @@ exports.create =(req, res) => {
 //         <h1>Hey Administrador, Alguien acaba de realizar un pedido en Mar y Sol!</h1>
 //         <h2>Nombre del cliente: ${order.client_name}</h2>
 //         <h2>E-mail del cliente: ${order.client_email}</h2>
+ //        <h2>Dirección del cliente: ${order.client_address}</h2>
 //         <h2>Telefono del cliente: ${order.client_phone}</h2>
 //         <h2>Total de productos: ${order.products.length}</h2>
 //         <h2>Status de la orden: ${order.status}</h2>
@@ -83,7 +84,7 @@ exports.create =(req, res) => {
 //         // email to buyer
 //         const emailData2 = {
 //             to: order.client_email,
-//             from: 'noreply@ecommerce.com',
+//             from: 'MarySol@cevicheria.com',
 //             subject: `Tu orden esta en proceso!!`,
 //             html: `
 //             <h1>Hey ${order.client_name}, Gracias por ordenar en Mar y Sol!</h1>

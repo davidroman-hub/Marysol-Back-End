@@ -20,7 +20,20 @@ const userSchema = new mongoose.Schema(
             type: String,
             trim: true,
             required: true,
-            default:'pon tu telefono aqui'
+            default:'Actualiza tu telefono aquí'
+          
+        },
+        address: {
+            type: String,
+            trim: true,
+            required: true,
+            default:'Actualiza tu dirección aquí'
+          
+        },address2: {
+            type: String,
+            trim: true,
+            required: true,
+            default:'Actualiza tu dirección aquí'
           
         },
         hashed_password: {

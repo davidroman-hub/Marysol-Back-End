@@ -37,7 +37,7 @@ exports.read = (req,res) => {
 exports.update = (req, res) => {
     // console.log('Update user - req.user', req.user, 'update-data ', req.body) <-- this is for see whats we are sending
 
-const {name,phone,password} = req.body 
+const {name,phone,password,address,address2} = req.body 
 
 User.findOne({_id: req.user._id},(err,user)=>{
     if(err || !user){
@@ -55,10 +55,22 @@ User.findOne({_id: req.user._id},(err,user)=>{
 
         if(!phone){
             res.status(400).json({
-                error: 'Phone is required'
+                error: 'Telefono es requerido'
             })
         } else {
             user.phone = phone
+        }if(!address){
+            res.status(400).json({
+                error: 'Dirección es requerida'
+            })
+        } else {
+            user.address = address
+        }if(!address2){
+            res.status(400).json({
+                error: 'Dirección es requerida'
+            })
+        } else {
+            user.address2 = address2
         }
         
         if(password){
