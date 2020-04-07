@@ -52,10 +52,10 @@ exports.signup = (req, res) => {
             to: email,
             subject: `Account activation link`,
             html: `
-                <h1>Please use the following link to activate your account</h1>
+                <h1>Da click en el siguiente Link para activar tu cuenta! y sigues las instrucciones</h1>
                 <p>${process.env.CLIENT_URL}/auth/activate/${token}</p>
                 <hr />
-                <p>This email may contain sensetive information</p>
+                <p>Este E-mail contiene información sensible</p>
                 <p>${process.env.CLIENT_URL}</p>
             `
         };
@@ -65,7 +65,7 @@ exports.signup = (req, res) => {
             .then(sent => {
                 // console.log('SIGNUP EMAIL SENT', sent)
                 return res.json({
-                    message: `Email has been sent to ${email}. Follow the instruction to activate your account`
+                    message: `E-mail ha sido enviado a:${email}. Sigue las instrucciones para activar tu cuenta!`
                 });
             })
             .catch(err => {
@@ -101,7 +101,7 @@ exports.accountActivation = (req, res) => {
                     });
                 }
                 return res.json({
-                    message: 'Signup success. Please signin.'
+                    message: 'Registro completado! Porfavor inicia sesión'
                 });
             });
         });
@@ -124,7 +124,7 @@ exports.signin = (req, res) => {
         // authenticate
         if (!user.authenticate(password)) {
             return res.status(400).json({
-                error: 'Email and password do not match'
+                error: 'El E-mail y la contraseña no coinciden!'
             });
         }
         // generate a token and send to client
@@ -178,7 +178,7 @@ exports.forgotPassword = (req, res) => {
     User.findOne({ email }, (err, user) => {
         if (err || !user) {
             return res.status(400).json({
-                error: 'User with that email does not exist'
+                error: 'Usuario con ese E-mail no existe!'
             });
         }
 
@@ -191,10 +191,11 @@ exports.forgotPassword = (req, res) => {
             to: email,
             subject: `Password Reset link`,
             html: `
-                <h1>Please use the following link to reset your password</h1>
+                <h1>PorFavor sigue las instrucciones para reestablecer tu cuenta!</h1>
+                <h3>Dando click en el link de abajo</h3>
                 <p>${process.env.CLIENT_URL}/auth/password/reset/${token}</p>
                 <hr />
-                <p>This email may contain sensetive information</p>
+                <p>Este E-mail contiene información sensible</p>
                 <p>${process.env.CLIENT_URL}</p>
             `
         };
@@ -211,7 +212,7 @@ exports.forgotPassword = (req, res) => {
                     .then(sent => {
                         // console.log('SIGNUP EMAIL SENT', sent)
                         return res.json({
-                            message: `Email has been sent to ${email}. Follow the instruction to activate your account`
+                            message: `E-mail fue enviado a: ${email}. Sigue las instrucciones para activar tu cuenta`
                         });
                     })
                     .catch(err => {
@@ -257,7 +258,7 @@ exports.resetPassword = (req, res) => {
                         });
                     }
                     res.json({
-                        message: `Great! Now you can login with your new password`
+                        message: `Perfecto! ahora puedes acceder con tu nueva contraseña!`
                     });
                 });
             });

@@ -7,7 +7,7 @@ const {requireSignin, adminMiddleware} = require('../controllers/auth')
 const {addOrderToUserHistory } = require('../controllers/user')
 const { create,listOrders, getStatusValues, orderById, updateOrderStatus } = require('../controllers/order')
 const { decreaseQuantity } = require("../controllers/product")
-
+const {orderValidator}= require('../validators/auth')
 
 router.post(
     "/order/create/:Id",

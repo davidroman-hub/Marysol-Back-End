@@ -44,3 +44,17 @@ exports.resetPasswordValidator = [
     
 ];
 
+exports.orderValidator = [
+    check('name')
+        .not()
+        .isEmpty()
+        .withMessage('Name is required'),
+    check('number')
+        .not()
+        .isEmpty()
+        .withMessage('Name is required'),
+    check('address')
+        .not()
+        .isEmpty()
+        .withMessage('Name is required'),
+];

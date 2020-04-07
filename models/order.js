@@ -53,8 +53,12 @@ const CartItem = mongoose.model("CartItem", CartItemSchema);
 const OrderSchema = new mongoose.Schema(
   {
     products: [CartItemSchema], // before was products but in the front end i have this like product
-    transaction_id: {},
+    
     number: {},
+    client_email:{},
+    client_name:{},
+    client_phone:{},
+    client_id:{},
     name: {},
     amount: { type: Number },
     address: String,
