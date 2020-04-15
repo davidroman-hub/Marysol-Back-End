@@ -61,9 +61,10 @@ const OrderSchema = new mongoose.Schema(
     client_name:{},
     client_phone:{},
     client_id:{},
-    name: {},
+    details: {},
     amount: { type: Number },
     address: String,
+    address2: String,
     status: {
       type: String,
       default: "No procesado",

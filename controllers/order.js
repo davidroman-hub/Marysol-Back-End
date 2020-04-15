@@ -57,8 +57,9 @@ exports.create =(req, res) => {
         <h1>Hey Administrador, Alguien acaba de realizar un pedido en Mar y Sol!</h1>
         <h2>Nombre del cliente: ${order.client_name}</h2>
         <h2>E-mail del cliente: ${order.client_email}</h2>
-        <h2>Dirección del cliente: ${order.client_address}</h2>
-        <h2>Telefono del cliente: ${order.client_phone}</h2>
+        <h2>Colonia de envío: ${order.address}</h2>
+        <h2>Dirección: ${order.address2}</h2>
+        <h2>Teléfono de Contacto: ${order.number}</h2>
         <h2>Total de productos: ${order.products.length}</h2>
         <h2>Status de la orden: ${order.status}</h2>
         <h2>Detalles de los Productos:</h2>
@@ -90,6 +91,9 @@ exports.create =(req, res) => {
             <h1>Hey ${order.client_name}, Gracias por ordenar en Mar y Sol!</h1>
             <h2>Total de productos: ${order.products.length}</h2>
             <h2>Estatus de la orden: ${order.status}</h2>
+            <h2>Colonia de envío: ${order.address}</h2>
+            <h2>Dirección: ${order.address2}</h2>
+            <h2>Teléfono de contacto: ${order.number}</h2>
             <h2>Detalles de los productos:</h2>
             <hr />
             ${order.products
