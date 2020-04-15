@@ -41,7 +41,7 @@ exports.signup = (req, res) => {
     User.findOne({ email }).exec((err, user) => {
         if (user) {
             return res.status(400).json({
-                error: 'Email is taken'
+                error: 'Ya existe cuenta con ese E-mail'
             });
         }
 
@@ -50,7 +50,7 @@ exports.signup = (req, res) => {
         const emailData = {
             from: process.env.EMAIL_FROM,
             to: email,
-            subject: `Account activation link`,
+            subject: `Link de activacion de cuenta`,
             html: `
                 <h1>Da click en el siguiente Link para activar tu cuenta! y sigues las instrucciones</h1>
                 <p>${process.env.CLIENT_URL}/auth/activate/${token}</p>
@@ -65,7 +65,7 @@ exports.signup = (req, res) => {
             .then(sent => {
                 // console.log('SIGNUP EMAIL SENT', sent)
                 return res.json({
-                    message: `E-mail ha sido enviado a:${email}. Sigue las instrucciones para activar tu cuenta!`
+                    message: `E-mail ha sido enviado a:${email}. Sigue las instrucciones para activar tu cuenta!, REVISA TU SPAM`
                 });
             })
             .catch(err => {
@@ -97,7 +97,7 @@ exports.accountActivation = (req, res) => {
                 if (err) {
                     console.log('SAVE USER IN ACCOUNT ACTIVATION ERROR', err);
                     return res.status(401).json({
-                        error: 'Error saving user in database. Try signup again'
+                        error: 'eRROR EN EL REGISTRO. Registrate otra vez'
                     });
                 }
                 return res.json({
@@ -118,7 +118,7 @@ exports.signin = (req, res) => {
     User.findOne({ email }).exec((err, user) => {
         if (err || !user) {
             return res.status(400).json({
-                error: 'User with that email does not exist. Please signup'
+                error: 'Usuario con ese email no existe porfavor REGISTRATE'
             });
         }
         // authenticate
@@ -189,7 +189,7 @@ exports.forgotPassword = (req, res) => {
         const emailData = {
             from: process.env.EMAIL_FROM,
             to: email,
-            subject: `Password Reset link`,
+            subject: `Link Para Recuperar contraseña`,
             html: `
                 <h1>PorFavor sigue las instrucciones para reestablecer tu cuenta!</h1>
                 <h3>Dando click en el link de abajo</h3>
