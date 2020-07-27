@@ -97,7 +97,7 @@ exports.accountActivation = (req, res) => {
                 if (err) {
                     console.log('SAVE USER IN ACCOUNT ACTIVATION ERROR', err);
                     return res.status(401).json({
-                        error: 'eRROR EN EL REGISTRO. Registrate otra vez'
+                        error: 'ERROR EN EL REGISTRO. Registrate otra vez'
                     });
                 }
                 return res.json({
@@ -107,7 +107,7 @@ exports.accountActivation = (req, res) => {
         });
     } else {
         return res.json({
-            message: 'Something went wrong. Try again.'
+            message: 'Algo paso mal intenta de nuevo! '
         });
     }
 };
@@ -254,7 +254,7 @@ exports.resetPassword = (req, res) => {
                 user.save((err, result) => {
                     if (err) {
                         return res.status(400).json({
-                            error: 'Error resetting user password'
+                            error: 'Error al resetear la contraseña nueva del usuario'
                         });
                     }
                     res.json({

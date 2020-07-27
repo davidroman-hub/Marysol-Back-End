@@ -59,24 +59,25 @@ User.findOne({_id: req.user._id},(err,user)=>{
             })
         } else {
             user.phone = phone
-        }if(!address){
-            res.status(400).json({
-                error: 'Dirección es requerida'
-            })
-        } else {
-            user.address = address
-        }if(!address2){
-            res.status(400).json({
-                error: 'Dirección es requerida'
-            })
-        } else {
-            user.address2 = address2
         }
+        //if(!address){
+        //     res.status(400).json({
+        //         error: 'Dirección es requerida'
+        //     })
+        // } else {
+        //     user.address = address
+        // }if(!address2){
+        //     res.status(400).json({
+        //         error: 'Dirección es requerida'
+        //     })
+        // } else {
+        //     user.address2 = address2
+        // }
         
         if(password){
             if(password.length < 6 ){
                 res.status(400).json({
-                    error: 'Password must have at least 6 characters'
+                    error: 'La contraseña debe tener al menos 6 caracteres'
                 })
             } else {
                 user.password = password
